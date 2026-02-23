@@ -29,15 +29,15 @@
         <div class=" grid grid-cols-3 gap-4 mt-5 ">
             <div class="shadow rounded-md p-5">
                 <p class="text-neutral">Total</p>
-                <p class="font-bold text-xl ">8</p>
+                <p  id="total-job" class="font-bold text-xl ">8</p>
             </div>
             <div class="shadow rounded-md p-5">
                 <p class="">Interview</p>
-                <p class="text-success font-bold text-xl">0</p>
+                <p  id="total-interview" class="text-success font-bold text-xl">0</p>
             </div>
             <div class="shadow rounded-md p-5">
                 <p>Rejected</p>
-                <p class="text-error font-bold text-xl">0</p>
+                <p  id="total-rejection" class="text-error font-bold text-xl">0</p>
             </div>
         </div>
     </header>
@@ -46,7 +46,7 @@
         <!-- job count -->
         <div class="flex justify-between">
             <h2 class="text-neutral font-semibold text-2xl">Available Jobs</h2>
-            <p class="text-gray-500">8 jobs</p>
+            <p id="job-count-two" class="text-gray-500">8 jobs</p>
         </div>
 
         <!-- toggle btn -->
@@ -56,7 +56,7 @@
             <button class="btn text-gray-500">Rejected</button>
         </div>
         <!-- card-section -->
-        <section class="mt-5 grid grid-cols-1 gap-4">
+        <section  id="all-card"  class="mt-5 grid grid-cols-1 gap-4">
             <!-- card-1-->
             <div class=" flex justify-between  rounded-md p-6 shadow">
 
@@ -241,7 +241,7 @@
 
                 </div>
                 <!-- main part-2 -->
-                <div><button class="btn p-3 rounded-full">
+                <div><button class="btn mt-2 md:p-3 rounded-full ">
                         <img src="icon/Trash.png" alt=""></button></div>
 
             </div>
@@ -304,9 +304,9 @@
 
                 </div>
                 <!-- main part-2 -->
+                   <!-- main part-2 -->
                 <div><button class="btn p-3 rounded-full">
                         <img src="icon/Trash.png" alt=""></button></div>
-
             </div>
 
         </section>
