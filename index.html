@@ -51,10 +51,15 @@
 
         <!-- toggle btn -->
         <div class="mt-5 ">
-            <button class="btn btn-info p-5 mr-2">All</button>
-            <button class="btn text-gray-500 mr-2">Interview</button>
-            <button class="btn text-gray-500">Rejected</button>
+            <button onclick="toggleStyle('all-filter-btn')" id="all-filter-btn" class="btn btn-info text-gray-500 p-5 mr-2">All</button>
+            <button onclick="toggleStyle('interview-btn')" id="interview-btn" class="btn text-gray-500 mr-2">Interview</button>
+            <button onclick="toggleStyle('rejected-btn')" id="rejected-btn" class="btn text-gray-500">Rejected</button>
         </div>
+
+        <!-- filtered section -->
+         <section id="filtered-section">
+
+         </section>
         <!-- card-section -->
         <section  id="all-card"  class="mt-5 grid grid-cols-1 gap-4">
             <!-- card-1-->
@@ -63,19 +68,19 @@
                 <!-- main part-1 -->
                 <div class="space-y-5">
                     <div>
-                        <h3 class="text-xl font-bold text-neutral">Mobile First Corp</h3>
-                        <p class=" text-gray-500">React Native Developer</p>
+                        <h3 class=" company-name text-xl font-bold text-neutral">Mobile First Corp</h3>
+                        <p class=" position text-gray-500">React Native Developer</p>
                     </div>
-                    <p class="text-gray-500">Remote
+                    <p class= " salary text-gray-500">Remote
                         •
                         Full-time
                         •
                         $130,000 - $175,000</p>
                     <div class="space-y-2">
                         <div class="bg-gray-200 text-neutral max-w-[125px] py-2 px-3 rounded-md text-center">
-                            <p class=" text-neutral font-semibold">Not Applied</p>
+                            <p class="application-status text-neutral font-semibold">Not Applied</p>
                         </div>
-                        <p>Build cross-platform mobile applications using React Native. Work on products used by
+                        <p class="role-description">Build cross-platform mobile applications using React Native. Work on products used by
                             millions of users worldwide.</p>
                     </div>
                     <div class="mb-3 md:mb-0">
