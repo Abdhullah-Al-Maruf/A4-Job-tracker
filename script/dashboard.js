@@ -194,7 +194,19 @@ mainContainer.addEventListener('click', function (event) {
 function renderingInterview() {
     filteredSectionInfo.innerHTML = ''
 
-    for (let item of interviewList) {
+    if(interviewList.length<=0){
+            const section = document.createElement("section");
+            section.innerHTML = `
+            <div class="text-center bg-white py-20 rounded-md border-gray-200 shadow-md"> 
+                <img src="./icon/jobs.png" alt="" class="mx-auto mb-5">
+                <h2 class="mb-1 font-semibold text-2xl text-[#002C5C]">No jobs available</h2>
+                <p class="text-lg text-[#64748B]">Check back soon for new job opportunities</p>
+            </div>
+            `
+         filteredSectionInfo.appendChild(section);   
+    }
+else{
+  for (let item of interviewList) {
         console.log(item);
         let div = document.createElement('div');
         div.className = 'flex flex-col md:flex-row lg:justify-between rounded-md p-6 shadow mb-4 '
@@ -228,12 +240,28 @@ function renderingInterview() {
 }
 
 
+   
+}
+
+
 
 // now i will create html inside the section
 function renderingRejection() {
     filteredSectionInfo.innerHTML = ''
 
-    for (let item of rejectionList) {
+    if(rejectionList.length<=0){
+            const section = document.createElement("section");
+            section.innerHTML = `
+            <div class="text-center bg-white py-20 rounded-md border-gray-200 shadow-md"> 
+                <img src="./icon/jobs.png" alt="" class="mx-auto mb-5">
+                <h2 class="mb-1 font-semibold text-2xl text-[#002C5C]">No jobs available</h2>
+                <p class="text-lg text-[#64748B]">Check back soon for new job opportunities</p>
+            </div>
+            `
+         filteredSectionInfo.appendChild(section);   
+    }
+    else {
+ for (let item of rejectionList) {
         console.log(item);
         let div = document.createElement('div');
         div.className = 'flex flex-col md:flex-row lg:justify-between rounded-md p-6 shadow mb-4 '
@@ -265,3 +293,27 @@ function renderingRejection() {
         filteredSectionInfo.appendChild(div);
     }
 }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
