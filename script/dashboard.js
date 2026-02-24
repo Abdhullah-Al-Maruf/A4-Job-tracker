@@ -1,4 +1,3 @@
-
 // for the  count we have to get the element first then we can do operation
 // then i will get the card parent then i will make a function for counting the children length of the container .so i can show it on the total by changing the inner text
 // at the same way i can do with others the idea is that i will create an array and push the element to it .
@@ -49,13 +48,14 @@ function toggleStyle(id) {
 
     const selected = document.getElementById(id);
 
-    const currentStatus = id;
+    // const currentStatus = id;
 
     selected.classList.add('btn-info');
     //this is for btn toggle info hide and show
     if (id == 'filter-interview-btn') {
         allCards.classList.add('hidden');
         filteredSectionInfo.classList.remove('hidden')
+        renderingInterview(); 
 
     } else if (id == "all-filter-btn") {
         allCards.classList.remove('hidden');
@@ -63,30 +63,28 @@ function toggleStyle(id) {
     } else if (id == "filter-rejected-btn") {
         allCards.classList.add('hidden');
         filteredSectionInfo.classList.remove('hidden')
+        renderingRejection(); 
     }
-
-
-
-
 }
 
 
 // for interview and reject btn
-// the parameter event and target is means where i click show the just the value of  that place
 mainContainer.addEventListener('click', function (event) {
-    // for testing
-    // console.log(event.target.classList.contains('interview-btn'));
+    const target = event.target;
 
-    if (event.target.classList.contains('interview-btn')) {
-        //we will go to the main parent and gather information  and make a object then push it on the array        
-        const parentNode = event.target.parentNode.parentNode;
+    // INTERVIEW BUTTON
+    if (target.classList.contains('interview-btn') || target.closest('.interview-btn')) {
+        const interviewButton = target.classList.contains('interview-btn') ? target : target.closest('.interview-btn');
+        const parentNode = interviewButton.closest('.flex');
+        if (!parentNode) return;
+        
         const companyName = parentNode.querySelector('.company-name').innerText;
         const companyPosition = parentNode.querySelector('.position').innerText;
         const companySalary = parentNode.querySelector('.salary').innerText;
-        const applicationStatus = parentNode.querySelector('.application-status').innerText;
         const responsibility = parentNode.querySelector('.role-description').innerText;
+        
         parentNode.querySelector('.application-status').innerText = 'Interviewed';
-        //   now i will make an object using the info 
+        
         const cardInfo = {
             companyName,
             companyPosition,
@@ -94,27 +92,42 @@ mainContainer.addEventListener('click', function (event) {
             applicationStatus: 'Interviewed',
             responsibility
         }
-        // now i will check for not add the same info many time
+        
         const infoExist = interviewList.find(info => info.companyName == cardInfo.companyName)
-        // because we click on  interviewBtn so we will change the status  to interviewed
+        
         if (!infoExist) {
             interviewList.push(cardInfo);
-
         }
+        
         rejectionList = rejectionList.filter(item => item.companyName != cardInfo.companyName)
-        renderingInterview();
         Counter();
+        
+        // IF WE ARE IN REJECTED TAB - remove card immediately
+        if (!filteredSectionInfo.classList.contains('hidden') && rejectedBtn.classList.contains('btn-info')) {
+            parentNode.remove(); // Remove from Rejected tab
+        } 
+        // IF WE ARE IN INTERVIEW TAB - refresh the view
+        else if (!filteredSectionInfo.classList.contains('hidden') && interviewBtn.classList.contains('btn-info')) {
+            renderingInterview();
+        }
+        // IF WE ARE IN ALL TAB - just update status
+        else if (!allCards.classList.contains('hidden')) {
+            // Card already updated
+        }
 
-    } else if (event.target.classList.contains('rejected-btn')) {
-        //we will go to the main parent and gather information  and make a object then push it on the array        
-        const parentNode = event.target.parentNode.parentNode;
+    // REJECTED BUTTON
+    } else if (target.classList.contains('rejected-btn') || target.closest('.rejected-btn')) {
+        const rejectedButton = target.classList.contains('rejected-btn') ? target : target.closest('.rejected-btn');
+        const parentNode = rejectedButton.closest('.flex');
+        if (!parentNode) return;
+        
         const companyName = parentNode.querySelector('.company-name').innerText;
         const companyPosition = parentNode.querySelector('.position').innerText;
         const companySalary = parentNode.querySelector('.salary').innerText;
-        const applicationStatus = parentNode.querySelector('.application-status').innerText;
         const responsibility = parentNode.querySelector('.role-description').innerText;
+        
         parentNode.querySelector('.application-status').innerText = 'Rejected';
-        //   now i will make an object using the info 
+        
         const cardInfo = {
             companyName,
             companyPosition,
@@ -122,27 +135,33 @@ mainContainer.addEventListener('click', function (event) {
             applicationStatus: 'Rejected',
             responsibility
         }
-        // now i will check for not add the same info many time
+        
         const infoExist = rejectionList.find(info => info.companyName == cardInfo.companyName)
-        // because we click on  interviewBtn so we will change the status  to interviewed
+        
         if (!infoExist) {
             rejectionList.push(cardInfo);
         }
+        
         interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName)
-        renderingRejection();
         Counter();
-
-
+        
+        // IF WE ARE IN INTERVIEW TAB - remove card immediately
+        if (!filteredSectionInfo.classList.contains('hidden') && interviewBtn.classList.contains('btn-info')) {
+            parentNode.remove(); // Remove from Interview tab
+        } 
+        // IF WE ARE IN REJECTED TAB - refresh the view
+        else if (!filteredSectionInfo.classList.contains('hidden') && rejectedBtn.classList.contains('btn-info')) {
+            renderingRejection();
+        }
+        // IF WE ARE IN ALL TAB - just update status
+        else if (!allCards.classList.contains('hidden')) {
+            // Card already updated
+        }
     }
 })
 
-
-
-
 // now i will create html inside the section
 function renderingInterview() {
-
-
     filteredSectionInfo.innerHTML = ''
 
     for (let item of interviewList) {
@@ -176,12 +195,10 @@ function renderingInterview() {
       `
         filteredSectionInfo.appendChild(div);
     }
-
 }
+
 // now i will create html inside the section
 function renderingRejection() {
-
-
     filteredSectionInfo.innerHTML = ''
 
     for (let item of rejectionList) {
@@ -215,5 +232,4 @@ function renderingRejection() {
       `
         filteredSectionInfo.appendChild(div);
     }
-
 }
