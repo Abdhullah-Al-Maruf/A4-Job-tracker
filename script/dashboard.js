@@ -116,7 +116,7 @@ mainContainer.addEventListener('click', function (event) {
         }
 
     // REJECTED BUTTON
-    } else if (target.classList.contains('rejected-btn') || target.closest('.rejected-btn')) {
+    } else if (event.target.classList.contains('rejected-btn') || target.closest('.rejected-btn')) {
         const rejectedButton = target.classList.contains('rejected-btn') ? target : target.closest('.rejected-btn');
         const parentNode = rejectedButton.closest('.flex');
         if (!parentNode) return;
@@ -158,7 +158,37 @@ mainContainer.addEventListener('click', function (event) {
             // Card already updated
         }
     }
+    // this is the trash btn  function
+      else if (event.target.closest('.trash-btn')) {
+    const jobCard = target.closest('.flex');
+    
+    if (jobCard) {
+        const companyName = jobCard.querySelector('.company-name').innerText;
+        
+        // Remove from arrays
+        interviewList = interviewList.filter(item => item.companyName !== companyName);
+        rejectionList = rejectionList.filter(item => item.companyName !== companyName);
+        
+        // Remove from page
+        jobCard.remove();
+        
+        // Update counters
+        Counter();
+        
+        // Refresh the view
+        if (!filteredSectionInfo.classList.contains('hidden')) {
+            if (interviewBtn.classList.contains('btn-info')) {
+                renderingInterview();
+            } else if (rejectedBtn.classList.contains('btn-info')) {
+                renderingRejection();
+            }
+        }
+    }
+    return;
+}
+   
 })
+
 
 // now i will create html inside the section
 function renderingInterview() {
@@ -190,12 +220,14 @@ function renderingInterview() {
 
                 </div>
                 <!-- main part-2 -->
-                <div  class="shrink-0"><button class="  btn  p-3 rounded-full">
+                <div  class="shrink-0"><button class="  btn trash-btn p-3 rounded-full">
                         <img src="icon/Trash.png" alt="" ></button></div>
       `
         filteredSectionInfo.appendChild(div);
     }
 }
+
+
 
 // now i will create html inside the section
 function renderingRejection() {
@@ -227,7 +259,7 @@ function renderingRejection() {
 
                 </div>
                 <!-- main part-2 -->
-                <div  class="shrink-0"><button class="  btn  p-3 rounded-full">
+                <div  class="shrink-0"><button class="  btn trash-btn  p-3 rounded-full">
                         <img src="icon/Trash.png" alt="" ></button></div>
       `
         filteredSectionInfo.appendChild(div);
