@@ -4,7 +4,7 @@
 The Job Tracker Application is a web-based tool that helps users manage and track job applications efficiently. Users can organize job listings, monitor application status, and stay updated throughout their job search journey.
 
 ## 🚀 Live Link
-🔗
+🔗 https://abdhullah-al-maruf.github.io/A4-Job-tracker/
 
 ## 🛠️ Technologies Used
 - React.js
@@ -24,6 +24,7 @@ The Job Tracker Application is a web-based tool that helps users manage and trac
 - tailwindcss
 
 ## 🖼️ Screenshot
+<img width="1716" height="915" alt="image" src="https://github.com/user-attachments/assets/4a746d81-c257-402a-be59-9b72fa8a0d24" />
 
 
 ## ⚙️ Installation & Setup
